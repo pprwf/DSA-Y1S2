@@ -34,6 +34,5 @@ class ArrayStack:
 
 parsingStack = ArrayStack()
 str = "(((A - B) * C)"
-result = parsingStack.is_empty()
 result = parsingStack.is_parentheses_matching(str)
 print(result)
