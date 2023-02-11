@@ -1,4 +1,4 @@
-'''singly linked list'''
+'''Singly Linked List'''
 
 class SinglyLinkedList:
     
