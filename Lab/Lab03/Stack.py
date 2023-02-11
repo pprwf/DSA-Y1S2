@@ -6,13 +6,16 @@ class ArrayStack:
         self.data = []
 
     def size(self):
-        print(len(self.data))
+        print("Size of Stack :", len(self.data), "\n----------")
 
     def is_empty(self):
-        return True if self.data == [] else False
+        print("This stack is empty? : ", end="")
+        return self.data == []
 
     def push(self, data):
+        print("Push (%s) : " %data, end="")
         self.data.append(data)
+        self.printStack()
 
     def pop(self):
         if self.data == []:
@@ -26,9 +29,10 @@ class ArrayStack:
         return None if self.data == [] else self.data[-1]
 
     def printStack(self):
-        print(self.data)
+        print(self.data, "\n----------")
 
 dataStack = ArrayStack()
+print("----------")
 dataStack.push(10)
 dataStack.push(20)
 dataStack.push(30)
@@ -38,5 +42,5 @@ print(x)
 dataStack.pop()
 dataStack.printStack()
 dataStack.pop()
-print(dataStack.is_empty())
+print(dataStack.is_empty(), "\n----------")
 dataStack.pop()
