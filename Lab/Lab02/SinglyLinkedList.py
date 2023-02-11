@@ -1,7 +1,7 @@
 '''Singly Linked List'''
 
 class SinglyLinkedList:
-    
+
     def __init__(self):
         self.count = 0
         self.head = None
