@@ -1,4 +1,4 @@
-''''''
+'''Lab 1.3 Finding max & min values'''
 
 def minmax(data):
     '''final lab'''
