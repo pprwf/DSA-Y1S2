@@ -22,7 +22,9 @@ class ArrayStack:
             print("Underflow: Cannot pop data from an empty list")
         else:
             value = self.data[-1]
+            print("Pop (%s) : " %value, end="")
             self.data.pop()
+            self.printStack()
             return value
 
     def stackTop(self):
@@ -36,11 +38,13 @@ print("----------")
 dataStack.push(10)
 dataStack.push(20)
 dataStack.push(30)
+print("Stack : ", end="")
 dataStack.printStack()
 x = dataStack.pop()
-print(x)
+print("x =", x, "\n----------")
 dataStack.pop()
 dataStack.printStack()
 dataStack.pop()
 print(dataStack.is_empty(), "\n----------")
 dataStack.pop()
+print("----------")
