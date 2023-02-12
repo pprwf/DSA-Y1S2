@@ -6,7 +6,7 @@ class ArrayStack:
         self.data = []
 
     def size(self):
-        print("Size of Stack :", len(self.data))
+        print("Size of Stack :", len(self.data), "\n----------")
 
     def is_empty(self):
         print("This stack is empty? : ", end="")
@@ -31,21 +31,23 @@ class ArrayStack:
         return None if self.data == [] else self.data[-1]
 
     def printStack(self):
-        print(self.data)
+        print(self.data, "\n----------")
 
-dataStack = ArrayStack()
-print("----------")
-dataStack.push(10)
-dataStack.push(20)
-dataStack.push(30)
-print("Stack : ", end="")
-dataStack.printStack()
-x = dataStack.pop()
-print("x =", x)
-dataStack.pop()
-print("Stack : ", end="")
-dataStack.printStack()
-dataStack.pop()
-print(dataStack.is_empty())
-dataStack.pop()
-print("----------")
+# from Lab.Lab03.Stack import ArrayStack
+
+
+def is_parentheses_matching(expression):
+    parsingStack = ArrayStack()
+    for i in expression:
+        if i == "(":
+            parsingStack.push(i)
+        elif i == ")":
+            parsingStack.pop()
+    if parsingStack.data != []:
+        print("Parentheses in", expression, "are unmatched")
+    return parsingStack.is_empty()
+
+parsingStack = ArrayStack()
+str = "(((A - B) * C)"
+result = is_parentheses_matching(str)
+print(result)
