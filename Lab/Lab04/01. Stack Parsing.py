@@ -1,4 +1,4 @@
-'''Stack'''
+'''Stack Parsing'''
 
 class ArrayStack:
 
