@@ -46,5 +46,6 @@ def infixToPostfix(expression, postfix=""):
 
 exp = "A+B*C-D/E"
 postfix = infixToPostfix(exp)
+print("----------")
 print("Postfix of", exp, "is", postfix)
 print("----------")
