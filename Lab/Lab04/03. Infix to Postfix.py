@@ -30,25 +30,18 @@ def infixToPostfix(expression, postfix=""):
     operatorStack = ArrayStack()
     print("----------")
     for i in expression:
-        print("Letter :", i)
         if i.isalpha():
             postfix += i
         elif i in "+-*/":
             if operatorStack.is_empty():
-                print("Stack ", end=""), operatorStack.push(i)
+                operatorStack.push(i)
             else:
                 if i in "+-":
                     while not operatorStack.is_empty():
-                        oper = operatorStack.data[-1]
-                        print("Stack ", end=""), operatorStack.pop()
-                        postfix += oper
-                print("Stack ", end=""), operatorStack.push(i)
-        print("Stack : %s\nPostfix : %s\n----------" %(operatorStack.data, postfix))
+                        postfix += operatorStack.pop()
+                operatorStack.push(i)
     while not operatorStack.is_empty():
-        oper = operatorStack.data[-1]
-        print("Stack ", end=""), operatorStack.pop()
-        postfix += oper
-        print("Stack : %s\nPostfix : %s\n----------" %(operatorStack.data, postfix))
+        postfix += operatorStack.pop()
     return postfix
 
 exp = "A+B*C-D/E"
