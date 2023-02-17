@@ -23,29 +23,33 @@ class ArrayStack:
             self.printStack()
             return value
 
+    def stackTop(self):
+        return None if self.data == [] else self.data[-1]
+
     def printStack(self):
         print(self.data)
 
 def infixToPostfix(expression, postfix=""):
     operatorStack = ArrayStack()
     print("----------")
-    for i in expression:
-        if i.isalpha():
-            postfix += i
-        elif i in "+-*/":
-            if operatorStack.is_empty():
-                operatorStack.push(i)
-            else:
-                if i in "+-":
-                    while not operatorStack.is_empty():
-                        postfix += operatorStack.pop()
-                operatorStack.push(i)
+    for letter in expression:
+        print("Letter :", letter)
+        if letter.isalpha():
+            postfix += letter
+        elif letter in "+-*/":
+            if not operatorStack.is_empty():
+                while not operatorStack.is_empty() and (operatorStack.stackTop() in "*/" or letter in "+-"):
+                    postfix += operatorStack.pop()
+            operatorStack.push(letter)
+        print("Postfix :", postfix)
+        print("----------")
     while not operatorStack.is_empty():
         postfix += operatorStack.pop()
+        print("Postfix :", postfix)
+        print("----------")
     return postfix
 
 exp = "A+B*C-D/E"
 postfix = infixToPostfix(exp)
-print("----------")
 print("Postfix of", exp, "is", postfix)
 print("----------")
