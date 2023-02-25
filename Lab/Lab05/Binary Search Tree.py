@@ -27,12 +27,29 @@ class BST:
     def delete(self, data):
         prev, this = None, self.root
         if self.root == data:
-            return this.data
+            self.root == None
+            return data
         while this != None:
             if data > this.data:
                 prev, this = this, this.right
             elif data < this.data:
                 prev, this = this, this.left
+            elif data == this.data:
+                if (this.left and this.right) == None:
+                    prev.left = (None if this.data < prev.data else prev.left)
+                    prev.right = (None if this.data < prev.data else prev.right)
+                elif (this.left and this.right) != None:
+                    prev, this, delete = this, this.left, prev
+                    if this.right == None:
+                        prev.data, prev.left = this.data, this
+                        return data
+                    while this.right != None:
+                        delete, this = this, this.right
+                    prev.data, delete.right = this.data, None
+                else:
+                    prev.left = (this.left if this.left != None else this.right)
+                    prev.right = (this.left if this.left != None else this.right)
+                return data
         return None
 
     def preorder(self, root):
@@ -86,14 +103,14 @@ class BSTNode:
 
 myBST = BST()
 myBST.insert(14)
-# myBST.insert(23)
-# myBST.insert(7)
-# myBST.insert(10)
-# myBST.insert(33)
-# print("----------")
-# myBST.traverse()
-# print("\n----------")
+myBST.insert(23)
+myBST.insert(7)
+myBST.insert(10)
+myBST.insert(33)
+print("----------")
+myBST.traverse()
+print("\n----------")
 myBST.delete(14)
 myBST.traverse()
-print("Min:", myBST.findMin())
+print("\nMin:", myBST.findMin())
 print("Max:", myBST.findMax())
