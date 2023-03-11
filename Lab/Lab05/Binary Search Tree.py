@@ -37,7 +37,6 @@ class BST:
                 prev, this = this, this.left
             elif data == this.data:
                 if this.left == None and this.right == None:
-                    # print("Case #1")
                     prev.left = (None if this.data < prev.data else prev.left)
                     prev.right = (None if this.data > prev.data else prev.right)
                 elif (this.left and this.right) != None:
@@ -51,10 +50,8 @@ class BST:
                     prev.data, delete.right = this.data, None
                 else:
                     if self.root.data == data:
-                        # print("Case #4")
                         self.root = (this.left if this.left != None else this.right)
                         return data
-                    # print("Case #3")
                     prev.left = (this.left if this.left != None else this.right) if data < prev.data else None
                     prev.right = (this.left if this.left != None else this.right) if data > prev.data else None
                 return data
