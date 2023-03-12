@@ -40,10 +40,9 @@ class BST:
                     prev.left = (None if this.data < prev.data else prev.left)
                     prev.right = (None if this.data > prev.data else prev.right)
                 elif this.left != None and this.right != None:
-                    #Case 2 Node
                     prev, this, pointer = this, this.left, this
                     if this.right == None:
-                        prev.data = this.data
+                        prev.data, prev.left = this.data, this.left
                         if this.left != None:
                             prev.left = this.left
                         del this
@@ -73,13 +72,28 @@ class BST:
             self.preorder(root.right)
 
     def inorder(self, root):
-        if root != None:
+        this = self.root
+        while this.left != None:
+            this = this.left
+        if root == this:
+            print(root.data, end=" ")
+            self.inorder(root.right)
+        elif root != None:
             self.inorder(root.left)
             print("-->", root.data, end=" ")
             self.inorder(root.right)
 
     def postorder(self, root):
-        if root != None:
+        this = self.root
+        while this.left != None:
+            this = this.left
+        while this.right != None:
+            this = this.right
+        if root == this:
+            self.postorder(root.left)
+            self.postorder(root.right)
+            print(root.data, end=" ")
+        elif root != None:
             self.postorder(root.left)
             self.postorder(root.right)
             print("-->", root.data, end=" ")
@@ -113,29 +127,16 @@ class BSTNode:
         self.right = None
 
 myBST = BST()
-# myBST.insert(14)
-# myBST.insert(23)
-# myBST.insert(7)
-# myBST.insert(10)
-# myBST.insert(33)
-# print("----------")
-# myBST.traverse()
-# print("\n----------")
-# myBST.delete(14)
-# myBST.traverse()
-# print("\nMin:", myBST.findMin())
-# print("Max:", myBST.findMax())
+myBST.insert(14)
+myBST.insert(23)
+myBST.insert(7)
+myBST.insert(10)
+myBST.insert(33)
+print("----------\n")
+myBST.traverse()
+print("\n----------\n")
+myBST.delete(14)
+myBST.traverse()
+print("\nMin:", myBST.findMin())
+print("Max:", myBST.findMax())
 print("----------")
-print("Before: ", end="")
-myBST.insert(100)
-myBST.insert(50)
-myBST.insert(30)
-myBST.insert(80)
-myBST.preorder(myBST.root)
-print()
-myBST.delete(100)
-print("After: ", end="")
-myBST.preorder(myBST.root)
-print()
-myBST.inorder(myBST.root)
-print("\n----------")
