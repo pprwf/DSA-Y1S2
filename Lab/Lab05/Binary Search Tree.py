@@ -27,8 +27,8 @@ class BST:
     def delete(self, data):
         prev, this = None, self.root
         if self.root.data == data and this.left == None and this.right == None:
-            # print("Case #0")
             self.root = None
+            del this
             return data
         while this != None:
             if data > this.data:
@@ -39,21 +39,26 @@ class BST:
                 if this.left == None and this.right == None:
                     prev.left = (None if this.data < prev.data else prev.left)
                     prev.right = (None if this.data > prev.data else prev.right)
-                elif (this.left and this.right) != None:
-                    print("Case #2")
-                    prev, this, delete = this, this.left, prev
+                elif this.left != None and this.right != None:
+                    #Case 2 Node
+                    prev, this, pointer = this, this.left, this
                     if this.right == None:
-                        prev.data, prev.left = this.data, this
+                        prev.data = this.data
+                        if this.left != None:
+                            prev.left = this.left
+                        del this
                         return data
                     while this.right != None:
-                        delete, this = this, this.right
-                    prev.data, delete.right = this.data, None
+                        pointer, this = this, this.right
+                    prev.data, pointer.right = this.data, this.right
                 else:
                     if self.root.data == data:
                         self.root = (this.left if this.left != None else this.right)
+                        del this
                         return data
                     prev.left = (this.left if this.left != None else this.right) if data < prev.data else None
                     prev.right = (this.left if this.left != None else this.right) if data > prev.data else None
+                del this
                 return data
         return None
 
@@ -122,12 +127,15 @@ myBST = BST()
 # print("Max:", myBST.findMax())
 print("----------")
 print("Before: ", end="")
+myBST.insert(100)
 myBST.insert(50)
-myBST.insert(20)
-myBST.insert(90)
+myBST.insert(30)
+myBST.insert(80)
 myBST.preorder(myBST.root)
 print()
-myBST.delete(20)
+myBST.delete(100)
 print("After: ", end="")
 myBST.preorder(myBST.root)
+print()
+myBST.inorder(myBST.root)
 print("\n----------")
