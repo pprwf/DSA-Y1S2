@@ -55,8 +55,8 @@ class BST:
                         self.root = (this.left if this.left != None else this.right)
                         del this
                         return data
-                    prev.left = (this.left if this.left != None else this.right) if data < prev.data else None
-                    prev.right = (this.left if this.left != None else this.right) if data > prev.data else None
+                    prev.left = (this.left if this.left != None else this.right) if data < prev.data else prev.left
+                    prev.right = (this.left if this.left != None else this.right) if data > prev.data else prev.right
                 del this
                 return data
         return None
@@ -132,11 +132,18 @@ myBST.insert(23)
 myBST.insert(7)
 myBST.insert(10)
 myBST.insert(33)
+myBST.insert(5)
+myBST.insert(20)
+myBST.insert(13)
 print("----------\n")
 myBST.traverse()
 print("\n----------\n")
+myBST.delete(5)
+myBST.delete(33)
 myBST.delete(14)
+myBST.delete(7)
+myBST.delete(23)
 myBST.traverse()
-print("\nMin:", myBST.findMin())
-print("Max:", myBST.findMax())
+# print("\nMin:", myBST.findMin())
+# print("Max:", myBST.findMax())
 print("----------")
