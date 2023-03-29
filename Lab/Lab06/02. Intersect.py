@@ -28,7 +28,6 @@ def random_List (n):
 
 def analyze_algo (n):
     num1, num2, num3 = random_List(n), random_List(n), random_List(n)
-    print(num1, num2, num3)
 
     # O ** 2
     stime = time()
