@@ -24,6 +24,43 @@ class BST:
             elif prev.data < data:
                 prev.right = newBST
 
+    def delete(self, data):
+        prev, this = None, self.root
+        if self.root.data == data and this.left == None and this.right == None:
+            self.root = None
+            del this
+            return data
+        while this != None:
+            if data > this.data:
+                prev, this = this, this.right
+            elif data < this.data:
+                prev, this = this, this.left
+            elif data == this.data:
+                if this.left == None and this.right == None:
+                    prev.left = (None if this.data < prev.data else prev.left)
+                    prev.right = (None if this.data > prev.data else prev.right)
+                elif this.left != None and this.right != None:
+                    prev, this, pointer = this, this.left, this
+                    if this.right == None:
+                        prev.data, prev.left = this.data, this.left
+                        if this.left != None:
+                            prev.left = this.left
+                        del this
+                        return data
+                    while this.right != None:
+                        pointer, this = this, this.right
+                    prev.data, pointer.right = this.data, this.right
+                else:
+                    if self.root.data == data:
+                        self.root = (this.left if this.left != None else this.right)
+                        del this
+                        return data
+                    prev.left = (this.left if this.left != None else this.right) if data < prev.data else prev.left
+                    prev.right = (this.left if this.left != None else this.right) if data > prev.data else prev.right
+                del this
+                return data
+        return None
+
     def preorder(self, root):
         if root == self.root and self.root != None:
             print(root.data, end=" ")
@@ -95,7 +132,17 @@ myBST.insert(23)
 myBST.insert(7)
 myBST.insert(10)
 myBST.insert(33)
+myBST.insert(5)
+myBST.insert(20)
+myBST.insert(13)
 print("----------\n")
+myBST.traverse()
+print("\n----------\n")
+myBST.delete(5)
+myBST.delete(33)
+myBST.delete(14)
+myBST.delete(7)
+myBST.delete(23)
 myBST.traverse()
 print("\nMin:", myBST.findMin())
 print("Max:", myBST.findMax())
