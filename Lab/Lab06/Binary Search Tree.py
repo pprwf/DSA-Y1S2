@@ -5,9 +5,6 @@ class BST:
     def __init__(self):
         self.root = None
 
-    def is_empty(self):
-        return self.root == None
-
     def insert(self, data):
         newBST = BSTNode(data)
         if self.root == None:
@@ -107,18 +104,6 @@ class BST:
         self.postorder(self.root)
         print()
 
-    def findMin(self):
-        pointer = self.root
-        while pointer.left != None:
-            pointer = pointer.left
-        return pointer.data
-
-    def findMax(self):
-        pointer = self.root
-        while pointer.right != None:
-            pointer = pointer.right
-        return pointer.data
-
 class BSTNode:
 
     def __init__(self, data):
@@ -127,23 +112,24 @@ class BSTNode:
         self.right = None
 
 myBST = BST()
-myBST.insert(14)
-myBST.insert(23)
-myBST.insert(7)
-myBST.insert(10)
-myBST.insert(33)
-myBST.insert(5)
-myBST.insert(20)
-myBST.insert(13)
+myBST.insert(14), myBST.insert(23), myBST.insert(7), myBST.insert(10)
+myBST.insert(33), myBST.insert(5), myBST.insert(20), myBST.insert(13)
 print("----------\n")
 myBST.traverse()
 print("\n----------\n")
-myBST.delete(5)
-myBST.delete(33)
-myBST.delete(14)
-myBST.delete(7)
-myBST.delete(23)
+
+# Case 1 (Delete Leaf Node)
+# myBST.delete(5)
+# myBST.delete(33)
+
+# Case 4 (Delete Parent Node)
+# myBST.delete(14)
+
+# Case 2 (Delete Node that has Left Child)
+# myBST.delete(7)
+
+# Case 3 (Delete Node that has Right Child)
+# myBST.delete(23)
+
 myBST.traverse()
-print("\nMin:", myBST.findMin())
-print("Max:", myBST.findMax())
 print("----------")
