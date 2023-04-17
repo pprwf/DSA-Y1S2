@@ -8,3 +8,5 @@ def selectionSort(lis=[]):
 
 def bubbleSort(lis=[]):
     pass
+
+bubbleSort()
