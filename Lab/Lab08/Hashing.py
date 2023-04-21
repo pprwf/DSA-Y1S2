@@ -31,7 +31,7 @@ class Student:
         self.id = id
         self.name = name
         self.gpa = gpa
- 
+
     def getID(self):
         return self.id
 
